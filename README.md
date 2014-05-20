@@ -16,10 +16,10 @@ ds.start().then(function (stream) {
     return ds.run('apt-get update');
 }).then(function () {
     console.log('---> install curl\n');
-    return ds.run('apt-get install -y curl'); // zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
+    return ds.run('apt-get install -y curl');
 }).then(function () {
     console.log('---> install rvm\n');
-    return ds.run('curl -sSL https://get.rvm.io | bash -s stable --rails'); // zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
+    return ds.run('curl -sSL https://get.rvm.io | bash -s stable --rails');
 }).then(function () {
     console.log('---> load rvm environment\n');
     return ds.run('source ~/.rvm/scripts/rvm');
