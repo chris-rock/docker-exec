@@ -15,7 +15,6 @@ describe('docker-exec', function () {
     it('run', function (done) {
         this.timeout(1000000);
         console.log('start new container');
-        var exitcode = 0;
 
         ds.start({
             Image: 'chrisrock/spaceportci-nodejs'
