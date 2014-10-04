@@ -1,12 +1,14 @@
 'use strict';
 
 var os = require('os');
+var url = require('url');
 
 function getExecConfig() {
-    if (os.platform() == 'darwin') {
+    if (os.platform() === 'darwin') {
+        var urlObj = url.parse(process.env.DOCKER_HOST);
         return {
-            host: 'http://192.168.59.103',
-            port: 2375
+            host: 'http://' + urlObj.hostname,
+            port: urlObj.port
         };
     } else {
         return null; // default should work
