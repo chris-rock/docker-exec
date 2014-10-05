@@ -13,7 +13,8 @@ describe('docker-exec', function () {
     });
 
     it('run', function (done) {
-
+        this.timeout(50000);
+        
         console.log('start new container');
 
         ds.start().then(function (stream) {
