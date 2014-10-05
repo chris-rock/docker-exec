@@ -1,16 +1,22 @@
 'use strict';
 
 var os = require('os');
+var url = require('url');
 
 function getExecConfig() {
-    if (os.platform() == 'darwin') {
-        return {
-            host: 'http://127.0.0.1',
-            port: 4243
-        };
-    } else {
-        return null; // default should work
+    var config = null;
+    if (os.platform() === 'darwin') {
+        if (process.env.DOCKER_HOST) {
+            var urlObj = url.parse(process.env.DOCKER_HOST);
+            config = {
+                host: 'http://' + urlObj.hostname,
+                port: urlObj.port
+            };
+        } else {
+            console.error('Please set environment variable DOCKER_HOST');
+        }
     }
+    return config;
 }
 
 module.exports = {
